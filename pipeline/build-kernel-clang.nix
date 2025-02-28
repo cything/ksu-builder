@@ -35,7 +35,8 @@
 let
   finalMakeFlags = [
     "ARCH=${arch}"
-    "CC=clang"
+    # use --impure to pass your envars to sccache
+    ''CC="${lib.getExe pkgs.sccache} clang"''
     "O=$out"
     "LD=ld.lld"
     "LLVM=1"
