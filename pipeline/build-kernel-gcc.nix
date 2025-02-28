@@ -33,13 +33,8 @@
   ...
 }:
 let
-  gcc-aarch64-linux-android = pkgs.callPackage ../pkgs/gcc-aarch64-linux-android.nix { };
-  gcc-arm-linux-androideabi = pkgs.callPackage ../pkgs/gcc-arm-linux-androideabi.nix { };
-
   finalMakeFlags = [
     "ARCH=${arch}"
-    "CROSS_COMPILE=aarch64-linux-android-"
-    "CROSS_COMPILE_ARM32=arm-linux-androideabi-"
     "O=$out"
   ] ++ makeFlags;
 
@@ -62,7 +57,6 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     bc
-    bc
     bison
     coreutils
     cpio
@@ -82,9 +76,7 @@ stdenv.mkDerivation {
     which
     zlib
     zstd
-
-    gcc-aarch64-linux-android
-    gcc-arm-linux-androideabi
+    pkgs.pkgsCross.aarch64-android.gcc
   ];
 
   buildPhase = ''

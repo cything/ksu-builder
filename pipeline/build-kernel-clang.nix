@@ -65,7 +65,6 @@ usedLLVMPackages.stdenv.mkDerivation {
 
   nativeBuildInputs = [
     bc
-    bc
     bison
     coreutils
     cpio
