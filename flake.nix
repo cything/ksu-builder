@@ -20,7 +20,6 @@
     { flake-parts, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
-        ./kernels.nix
         ./flake-modules
         ./flake-modules/commands.nix
         inputs.nur-xddxdd.flakeModules.commands
@@ -35,14 +34,5 @@
         flakeModule = ./flake-modules;
         flakeModules.default = ./flake-modules;
       };
-
-      perSystem =
-        { pkgs, ... }:
-        {
-          packages = {
-            gcc-aarch64-linux-android = pkgs.callPackage pkgs/gcc-aarch64-linux-android.nix { };
-            gcc-arm-linux-androideabi = pkgs.callPackage pkgs/gcc-arm-linux-androideabi.nix { };
-          };
-        };
     };
 }
